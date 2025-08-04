@@ -1,0 +1,38 @@
+<div class="page-wrapper">
+  <div class="register-container">
+    <div class="register-card">
+      <h2>Update</h2>
+      <form [formGroup]="employee" (ngSubmit)="update()">
+
+        <div class="form-group">
+          <label for="ID">ID:</label>
+          <input type="text" id="id" formControlName="id" name="id" readonly />
+        </div>
+
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" formControlName="name" name="name" required/>
+          <span *ngIf="employee.get('name')?.invalid && employee.get('name')?.touched">Invalid Name</span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" formControlName="email" name="email" required />
+          <span *ngIf="employee.get('email')?.invalid && employee.get('email')?.touched">Invalid Email</span>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" formControlName="password" name="password" required/>
+          <span *ngIf="employee.get('password')?.invalid && employee.get('password')?.touched">Invalid Password</span>
+        </div>
+
+        <button class="register-btn" type="submit">Update</button>
+      </form>
+
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>
+

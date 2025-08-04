@@ -1,0 +1,63 @@
+<div class="dashboard-wrapper">
+
+  <!-- Header -->
+  <header class="dashboard-header">
+    <div class="header-content">
+      <h1 class="app-title">BlueNova Employee Manager</h1>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="dashboard-content">
+    <section class="welcome-section">
+      <div class="card welcome-card">
+        <h2 class="card-title">Welcome to Employee Manager</h2>
+        <p class="card-description">
+          Manage all your employee records in one place. This application helps HR and Admin teams perform various tasks such as:
+        </p>
+        <ul class="feature-list">
+          <li class="feature-item">➤ Add new employees</li>
+          <li class="feature-item">➤ Edit existing employee details</li>
+          <li class="feature-item">➤ Delete employee records</li>
+          <li class="feature-item">➤ View detailed employee profiles</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Table Section -->
+    <section class="table-section">
+      <div class="card table-card">
+        <h3 class="table-title">Employee List</h3>
+        <table class="employee-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Password</th>
+              <th>Deletion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let emp of employees">
+              <td>{{ emp.id }}</td>
+              <td>{{ emp.name | uppercase }}</td>
+              <td>{{ emp.email }}</td>
+              <td>{{ emp.password | maskPassword }}</td>
+              <td>
+                <button class="action-btn delete-btn" (click)="deleteEmployee(emp.id)">Delete</button>
+                &nbsp;
+                <a class="action-btn update-btn" [routerLink]="['/update', emp.id]">Show</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="dashboard-footer">
+    <app-footer></app-footer>
+  </footer>
+</div>
