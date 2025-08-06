@@ -18,20 +18,33 @@ export class RegisterComponent {
     password: new FormControl('',[Validators.required])
   })
 
-  register(){
-    this.service.register(this.employee.value).subscribe(res => {
-      console.log(res);
-      if (res) {
-        alert("employee added")
-        this.router.navigateByUrl('login');
-      }else{
-        alert("something went wrong !")
-        this.router.navigateByUrl('')
+  // register(){
+  //   this.service.register(this.employee.value).subscribe( {
+  //     next: (res) => {
+  //       alert('Employee Added Successfully!')
+  //     },
+  //     error: (err) => {
+  //       alert(err.message)
+  //     }
+
+  //   })
+
+  // }
+  register() {
+  this.service.register(this.employee.value).subscribe({
+    next: (res) => {
+      alert('Employee Added Successfully!');
+    },
+    error: (err) => {
+      if (err.error && err.error.email) {
+        alert('Error: ' + err.error.email[0]);  // This shows the duplicate email error
+      } else {
+        alert('An error occurred while registering.');
       }
+    }
+  });
+}
 
-    })
-
-  }
 
 
 }
